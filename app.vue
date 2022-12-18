@@ -1,11 +1,13 @@
 <template>
   <ul>
-    <li v-for="planet in result">{{ planet.name }}</li>
+    <li v-for="planet in result">{{ planet?.name }}</li>
   </ul>
 </template>
 
 <script lang="ts" setup>
-const query = gql`
+import { graphql } from './gql';
+
+const query = graphql(`
   query GetAllPlanetsForIndex($first: Int) {
     allPlanets(first: $first) {
       planets {
@@ -13,8 +15,8 @@ const query = gql`
       }
     }
   }
-`;
+`);
 
 const { data } = await useAsyncQuery(query, { first: 10 });
-const result = computed(() => data.value?.allPlanets.planets);
+const result = computed(() => data.value?.allPlanets?.planets ?? []);
 </script>

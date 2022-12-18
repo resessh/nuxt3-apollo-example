@@ -2,13 +2,22 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "run-p dev:*",
+    "dev:nuxt": "nuxt dev",
+    "dev:gql": "graphql-codegen --watch",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^2.16.1",
+    "@graphql-codegen/client-preset": "^1.2.3",
     "@nuxtjs/apollo": "^5.0.0-alpha.5",
-    "nuxt": "3.0.0"
+    "npm-run-all": "^4.1.5",
+    "nuxt": "3.0.0",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "graphql": "^16.6.0"
   }
 }
